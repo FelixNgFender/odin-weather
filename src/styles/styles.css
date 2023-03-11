@@ -1,0 +1,105 @@
+:root {
+  --passionate-red: 191, 5, 55;
+  --nostalgic-yellow: 242, 233, 107;
+  --soft-gray: 237, 196, 178;
+  --yello-range: 242, 174, 114;
+  --dark-black: 89, 2, 2;
+  --sharp-white: 255, 255, 255;
+  --vista-blue: 138, 166, 198;
+  --steel-blue: 50, 129, 178;
+  --yinmn-blue: 57, 85, 158;
+  --border-radius: 8px;
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 40px;
+  --container-width: 1200px;
+  --footer-height: 40px;
+  --btn-height: 50px;
+  --popup-height: 300px;
+  --checkbox-size: 20px;
+  --fn-btn-width: 110px;
+  --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+/* GLOBAL */
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(var(--nostalgic-yellow), 0.8);
+  box-shadow: var(--shadow);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--container-width);
+  padding: var(--spacing-lg);
+}
+
+.header-title {
+  font-family: "Roboto", sans-serif;
+  color: rgba(var(--yinmn-blue), 1);
+  font-size: 1.5rem;
+}
+
+/* MAIN */
+.main {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  color: rgba(var(--dark-black), 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  background-color: rgba(var(--yello-range), 0.8);
+}
+
+/* FOOTER */
+.footer {
+  padding-bottom: var(--spacing-xs);
+  height: var(--footer-height);
+  background-color: rgba(var(--soft-gray), 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  grid-row: 3 / 4;
+}
+
+.fa-github {
+  font-size: 20px;
+  margin-top: 4px;
+  color: black;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
+}
+
+/* MEDIA QUERIES */
