@@ -6,11 +6,11 @@
 
 "use strict";
 
-import appleTouchIconHref from "../assets/apple-touch-icon.png";
-import favicon32Href from "../assets/favicon-32x32.png";
-import favicon16Href from "../assets/favicon-16x16.png";
-import manifestHref from "../assets/site.webmanifest";
-import maskIconHref from "../assets/safari-pinned-tab.svg";
+import appleTouchIconHref from "../assets/favicon/apple-touch-icon.png";
+import favicon32Href from "../assets/favicon/favicon-32x32.png";
+import favicon16Href from "../assets/favicon/favicon-16x16.png";
+import manifestHref from "../assets/favicon/site.webmanifest";
+import maskIconHref from "../assets/favicon/safari-pinned-tab.svg";
 
 /**
  * Add favicons to the page.

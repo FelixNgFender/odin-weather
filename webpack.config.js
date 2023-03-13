@@ -20,7 +20,6 @@ module.exports = {
     new ESLintPlugin(),
     new HtmlWebpackPlugin({
       title: 'Kawaii Weather',
-      favicon: './src/assets/favicon.ico',
     }),
   ],
   module: {
@@ -49,6 +48,12 @@ module.exports = {
         exclude: /node_modules/,
         include: path.resolve(__dirname, "src"),
         type: "asset/resource",
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, "src"),
+        type: 'asset/resource',
       },
       {
         test: /\.webmanifest$/i,
