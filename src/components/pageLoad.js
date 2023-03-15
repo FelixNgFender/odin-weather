@@ -21,7 +21,7 @@ import maskIconHref from "../assets/favicon/safari-pinned-tab.svg";
  * Add favicons to the page.
  * @return {void}
  */
-function addFavicons() {
+function loadFavicons() {
   const appleTouchIcon = document.createElement("link");
   const favicon32 = document.createElement("link");
   const favicon16 = document.createElement("link");
@@ -108,7 +108,8 @@ function loadKit() {
  */
 function loadGoogleIcons() {
   const icons = document.createElement("link");
-  icons.href = "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
+  icons.href =
+    "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200";
   icons.rel = "stylesheet";
   document.head.appendChild(icons);
 }
@@ -127,6 +128,6 @@ export default function pageLoad() {
   wideScreenWrapper.appendChild(weatherDetailsComponent());
   wideScreenWrapper.appendChild(forecastComponent());
   content.appendChild(footer());
-  addFavicons();
+  loadFavicons();
   loadGoogleIcons();
 }

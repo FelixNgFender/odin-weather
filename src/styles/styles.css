@@ -1,5 +1,5 @@
 :root {
-  --border-radius: 24px;
+  --border-radius: 0px;
   --spacing-xs: 5px;
   --spacing-sm: 10px;
   --spacing-md: 15px;
@@ -7,9 +7,13 @@
   --spacing-xl: 40px;
   --container-width: 1200px;
   --footer-height: 30px;
+  --btn-width: 100px;
   --search-bar-height: 44px;
-  --forecast-height: 200px;
+  --forecast-height: 300px;
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --btn-border: 2px solid grey;
+  --placeholder-text: grey;
+  --text-color: black;
 }
 
 /* GLOBAL */
@@ -68,16 +72,16 @@ body {
 }
 
 .weatherInfo-temperature {
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 700;
 }
 
 .weatherInfo-unitChangeBtn {
   font-family: inherit;
   font-size: 1.5rem;
-  text-align: left;
   background-color: transparent;
-  border: none;
+  width: var(--btn-width);
+  border: var(--btn-border);
   outline: none;
   cursor: pointer;
   padding: 0;
@@ -158,9 +162,41 @@ body {
 
 /* FORECAST */
 .forecast {
-  background-color: orange;
   grid-column: 1 / -1;
   height: var(--forecast-height);
+  padding: var(--spacing-lg);
+}
+
+.forecast-btn {
+  display: none;
+}
+
+.forecast-label {
+  display: inline-block;
+  width: var(--btn-width);
+  font-size: 1.5rem;
+  text-align: center;
+  border: var(--btn-border);
+  margin-right: var(--spacing-sm);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.forecast-label:hover,
+.forecast-btn:checked + .forecast-label {
+  background-color: grey;
+  color: #f5f5f5;
+}
+
+.forecast-slider {
+  display: flex;
+  width: var(--btn-width);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forecast-slider svg {
+  fill: black;
 }
 
 /* FOOTER */

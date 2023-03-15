@@ -6,6 +6,8 @@
 
 "use strict";
 
+import { getLocationFromForm } from "./fetchData";
+
 /**
  * Create the search box component.
  * @return {HTMLElement} Search box component
@@ -14,7 +16,7 @@
 export default function searchBoxComponent() {
   const searchBox = document.createElement("section");
   const searchForm = document.createElement("form");
-  const icon = document.createElement("span");
+  const icon = document.createElement("label");
   const searchInput = document.createElement("input");
   const location = document.createElement("div");
   const localTime = document.createElement("div");
@@ -23,8 +25,10 @@ export default function searchBoxComponent() {
   searchForm.id = "searchBox-form";
   searchForm.classList.add("searchBox-form");
   icon.classList.add("material-symbols-outlined", "searchBox-icon", "size-20");
+  icon.htmlFor = "searchBox-input-city";
   searchInput.classList.add("searchBox-input");
-  searchInput.id = "searchBox-input";
+  searchInput.id = "searchBox-input-city";
+  searchInput.name = "city";
   searchInput.type = "text";
   searchInput.placeholder = "Search for a city";
   searchInput.required = true;
@@ -35,9 +39,7 @@ export default function searchBoxComponent() {
   icon.textContent = "search";
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const input = document.getElementById("searchBox-input");
-    const cityName = input.value;
-    console.log(cityName);
+    getLocationFromForm();
   });
   location.textContent = "Boston, US";
   localTime.textContent = "12:00 PM";
