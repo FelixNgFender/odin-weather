@@ -9,7 +9,7 @@
 /**
  * Create the forecast component.
  * @return {HTMLElement} Forecast component
- * @export
+ * @exports
  */
 export default function forecastComponent() {
   const forecast = document.createElement("section");
