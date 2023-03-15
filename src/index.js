@@ -27,20 +27,20 @@ startApp();
  * @param {String} city
  * @return {Promise} Promise object represents the weather data
  */
-async function getWeatherData(city) {
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=04fe0f098090ea64733afd05fc283ec2&units=metric`
-  );
-  const data = await response.json();
-  return data;
-}
+// async function getWeatherData(city) {
+//   const response = await fetch(
+//     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=04fe0f098090ea64733afd05fc283ec2&units=metric`
+//   );
+//   const data = await response.json();
+//   return data;
+// }
 
 // Test the getWeatherData function
-getWeatherData("Worcester").then((data) => {
-  console.log(data);
-});
+// getWeatherData("Worcester").then((data) => {
+//   console.log(data);
+// });
 
-exampleResponse = {
+const exampleResponse = {
   coord: {
     lon: -71.8328,
     lat: 42.3334,
@@ -84,3 +84,5 @@ exampleResponse = {
   name: "Worcester",
   cod: 200,
 };
+
+console.log(exampleResponse);
