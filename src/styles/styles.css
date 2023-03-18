@@ -18,7 +18,7 @@
   --footer-height: 30px;
   --btn-width: 100px;
   --search-bar-height: 44px;
-  --forecast-height: 300px;
+  --nav-dot-size: 10px;
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --border: 2px solid var(--hover-color);
 }
@@ -252,12 +252,49 @@ body {
   background-color: var(--hover-color);
 }
 
-.forecast-slider {
+.forecast-daily {
   display: flex;
-  width: var(--btn-width);
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
+
+.forecast-daily-item-date {
+  font-size: 2rem;
+}
+
+.forecast-daily-item-tempHi {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.forecast-daily-item-tempLo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.forecast-navigationDots {
+  width: 100%;
+  height: var(--nav-dot-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.forecast-navigationDot {
+  border-radius: 50%;
+  width: var(--nav-dot-size);
+  height: var(--nav-dot-size);
+  border: var(--border);
+  cursor: pointer;
+}
+
+.forecast-navigationDot.active {
+  background-color: var(--hover-color);
+}
+
 
 /* FOOTER */
 .footer {

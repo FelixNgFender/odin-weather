@@ -17,7 +17,6 @@ export default function forecastComponent() {
   const forecastDailyLabel = document.createElement("label");
   const forecastHourlyBtn = document.createElement("input");
   const forecastHourlyLabel = document.createElement("label");
-  const slider = sliderComponent()
 
   forecast.id = "forecast";
   forecast.classList.add("forecast");
@@ -47,59 +46,70 @@ export default function forecastComponent() {
   forecast.appendChild(forecastDailyLabel);
   forecast.appendChild(forecastHourlyBtn);
   forecast.appendChild(forecastHourlyLabel);
-  forecast.appendChild(slider);
+  forecast.appendChild(dailyForecastList());
+  forecast.appendChild(navigationDots(8));
 
   return forecast;
 }
 
 /**
- * Create the slider component.
- * @return {HTMLElement} Slider component
+ * Create the daily forecast list.
+ * @return {HTMLElement} Daily forecast list
  */
-function sliderComponent() {
-  const slider = document.createElement("div");
-  const leftArrow = document.createElement("span");
-  const leftArrowSvg = document.createElement("svg");
-  const leftArrowTitle = document.createElement("title");
-  const leftArrowPath = document.createElement("path");
-  const rightArrow = document.createElement("span");
-  const rightArrowSvg = document.createElement("svg");
-  const rightArrowTitle = document.createElement("title");
-  const rightArrowPath = document.createElement("path");
-  const dot1 = document.createElement("span");
-  const dot2 = document.createElement("span");
-  const dot3 = document.createElement("span");
+function dailyForecastList() {
+  const dailyForecastList = document.createElement("ul");
+  dailyForecastList.classList.add("forecast-daily");
+  dailyForecastList.id = "current-forecast";
 
-  slider.classList.add("forecast-slider");
-  leftArrow.classList.add("forecast-slider-left");
-  leftArrowSvg.xmlns = "http://www.w3.org/2000/svg";
-  leftArrowSvg.version = "1.1";
-  leftArrowSvg.viewBox = "8.02 6 7.41 12";
-  leftArrowSvg.fill = "#f5f5f5";
-  leftArrowTitle.textContent = "arrow_left";
-  leftArrowPath.d = "M15.422 16.594l-1.406 1.406-6-6 6-6 1.406 1.406-4.594 4.594z";
-  rightArrow.classList.add("forecast-slider-right");
-  rightArrowSvg.xmlns = "http://www.w3.org/2000/svg";
-  rightArrowSvg.version = "1.1";
-  rightArrowSvg.viewBox = "8.58 6 7.41 12";
-  rightArrowSvg.fill = "#f5f5f5";
-  rightArrowTitle.textContent = "arrow_right";
-  rightArrowPath.d = "M8.422 6.594l1.406 1.406 4.594-4.594-4.594-4.594-1.406 1.406 6 6z";
-  dot1.classList.add("forecast-slider-dot", "forecast-slider-dot1");
-  dot2.classList.add("forecast-slider-dot", "forecast-slider-dot2");
-  dot3.classList.add("forecast-slider-dot", "forecast-slider-dot3");
+  for (let i = 0; i < 7; i++) {
+    const dailyForecastItem = document.createElement("li");
+    const dailyForecastItemDate = document.createElement("div");
+    const dailyForecastItemTempHi = document.createElement("div");
+    const dailyForecastItemTempLo = document.createElement("div");
+    const dailyForecastItemIcon = document.createElement("img");
 
-  leftArrowSvg.appendChild(leftArrowTitle);
-  leftArrowSvg.appendChild(leftArrowPath);
-  leftArrow.appendChild(leftArrowSvg);
-  rightArrowSvg.appendChild(rightArrowTitle);
-  rightArrowSvg.appendChild(rightArrowPath);
-  rightArrow.appendChild(rightArrowSvg);
-  slider.appendChild(leftArrow);
-  slider.appendChild(dot1);
-  slider.appendChild(dot2);
-  slider.appendChild(dot3);
-  slider.appendChild(rightArrow);
+    dailyForecastItem.classList.add("forecast-daily-item");
+    dailyForecastItemDate.classList.add("forecast-daily-item-date");
+    dailyForecastItemTempHi.classList.add("forecast-daily-item-tempHi");
+    dailyForecastItemTempLo.classList.add("forecast-daily-item-tempLo");
+    dailyForecastItemIcon.classList.add("forecast-daily-item-icon");
 
-  return slider;
+    dailyForecastItemDate.textContent = "Mon";
+    dailyForecastItemTempHi.textContent = "10 °C";
+    dailyForecastItemTempLo.textContent = "4 °C";
+    dailyForecastItemIcon.src = "https://openweathermap.org/img/w/04d.png";
+    dailyForecastItemIcon.alt = "Clear Sky";
+
+    dailyForecastItem.appendChild(dailyForecastItemDate);
+    dailyForecastItem.appendChild(dailyForecastItemTempHi);
+    dailyForecastItem.appendChild(dailyForecastItemTempLo);
+    dailyForecastItem.appendChild(dailyForecastItemIcon);
+
+    dailyForecastList.appendChild(dailyForecastItem);
+  }
+
+  return dailyForecastList;
+}
+
+/**
+ * Create the navigation dots based on the current forecast tab.
+ * @param {number} numTabs Number of tabs active
+ * @return {HTMLElement} Navigation dots
+ */
+function navigationDots(numTabs) {
+  const navigationDots = document.createElement("ul");
+  const numDots = (numTabs <= 7 ? 1 : 3);
+
+  navigationDots.classList.add("forecast-navigationDots");
+  for (let i = 0; i < numDots; i++) {
+    const navigationDot = document.createElement("li");
+    navigationDot.classList.add("forecast-navigationDot");
+    navigationDot.classList.add("sweepToRight");
+    if (i === 0) {
+      navigationDot.classList.add("active");
+    }
+    navigationDots.appendChild(navigationDot);
+  }
+
+  return navigationDots;
 }
