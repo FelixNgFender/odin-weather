@@ -19,6 +19,7 @@
   --footer-height: 30px;
   --btn-width: 100px;
   --search-bar-height: 44px;
+  --forecast-height: 250px;
   --nav-dot-size: 10px;
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --border: 2px solid var(--hover-color);
@@ -189,6 +190,16 @@ body {
   color: var(--text-color);
 }
 
+.searchBox-error {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.searchBox-error.active {
+  display: block;
+}
+
 /* WEATHER DETAILS */
 .weatherDetails {
   font-size: 1.5rem;
@@ -228,6 +239,13 @@ body {
   grid-column: 1 / -1;
   height: var(--forecast-height);
   padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.forecast-btnWrapper {
+  width: 100%;
 }
 
 .forecast-btn {
@@ -255,9 +273,12 @@ body {
 }
 
 .forecast-daily {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: none;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.forecast-daily.active {
+  display: grid;
 }
 
 .forecast-daily-item-date {
@@ -276,7 +297,35 @@ body {
   color: var(--accent-color);
 }
 
+.forecast-hourly {
+  display: none;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.forecast-hourly.active {
+  display: grid;
+}
+
+.forecast-hourly-item {
+  display: none;
+}
+
+.forecast-hourly-item.active {
+  display: block;
+}
+
+.forecast-hourly-item-time {
+  font-size: 2rem;
+}
+
+.forecast-hourly-item-temp {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
 .forecast-navigationDots {
+  /* margin-top as much as possible without displacing other elements */
   width: 100%;
   height: var(--nav-dot-size);
   display: flex;

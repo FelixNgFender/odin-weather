@@ -75,6 +75,7 @@ function loadFavicons() {
 function main() {
   const main = document.createElement("main");
   main.classList.add("wideScreenWrapper");
+  main.id = "wideScreenWrapper";
   return main;
 }
 
@@ -126,18 +127,54 @@ function loadGoogleIcons() {
 
 /**
  * Initialize page load.
+ * @param {Object} coordsData Coordinates data
+ * @param {Object} weatherData Weather data
+ * @param {string} units Units to display
  * @return {void}
  * @exports
  */
-export default function pageLoad() {
+export default function pageLoad(coordsData, weatherData, units) {
   const content = document.getElementById("content");
   const wideScreenWrapper = main();
   content.appendChild(wideScreenWrapper);
-  wideScreenWrapper.appendChild(weatherInfoComponent());
-  wideScreenWrapper.appendChild(searchBoxComponent());
-  wideScreenWrapper.appendChild(weatherDetailsComponent());
-  wideScreenWrapper.appendChild(forecastComponent());
+  wideScreenWrapper.appendChild(
+    weatherInfoComponent(weatherData.current, units)
+  );
+  wideScreenWrapper.appendChild(
+    searchBoxComponent(coordsData, weatherData.current.dt)
+  );
+  wideScreenWrapper.appendChild(
+    weatherDetailsComponent(weatherData.current, units)
+  );
+  wideScreenWrapper.appendChild(
+    forecastComponent(weatherData.daily, weatherData.hourly, units)
+  );
   content.appendChild(footer());
   loadFavicons();
   loadGoogleIcons();
+}
+
+/**
+ * Re-render the main component with updated data.
+ * @param {Object} coordsData Coordinates data
+ * @param {Object} weatherData Weather data
+ * @param {string} units Units to display
+ * @return {void}
+ * @exports
+ */
+export function reRenderMain(coordsData, weatherData, units) {
+  const wideScreenWrapper = document.getElementById("wideScreenWrapper");
+  wideScreenWrapper.innerHTML = "";
+  wideScreenWrapper.appendChild(
+    weatherInfoComponent(weatherData.current, units)
+  );
+  wideScreenWrapper.appendChild(
+    searchBoxComponent(coordsData, weatherData.current.dt)
+  );
+  wideScreenWrapper.appendChild(
+    weatherDetailsComponent(weatherData.current, units)
+  );
+  wideScreenWrapper.appendChild(
+    forecastComponent(weatherData.daily, weatherData.hourly, units)
+  );
 }

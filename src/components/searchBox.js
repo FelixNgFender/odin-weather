@@ -6,19 +6,23 @@
 
 "use strict";
 
-import { getLocationFromForm } from "./fetchData";
+import { convertUnixTimestamp, updateMain } from "..";
 
 /**
  * Create the search box component.
+ * @param {Object} coordsData - Coordinates data
+ * @param {Number} currentUnixTimestamp - Current unix timestamp
  * @return {HTMLElement} Search box component
  * @exports
  */
-export default function searchBoxComponent() {
+export default function searchBoxComponent(coordsData, currentUnixTimestamp) {
   const searchBox = document.createElement("section");
   const searchForm = document.createElement("form");
   const icon = document.createElement("label");
   const searchInput = document.createElement("input");
+  const error = document.createElement("div");
   const location = document.createElement("div");
+  const date = document.createElement("div");
   const localTime = document.createElement("div");
 
   searchBox.classList.add("searchBox");
@@ -34,21 +38,38 @@ export default function searchBoxComponent() {
   searchInput.placeholder = "Search for a city";
   searchInput.required = true;
   searchInput.spellcheck = false;
+  searchInput.autocomplete = "off";
+  error.classList.add("searchBox-error");
+  error.id = "searchBox-error";
   location.classList.add("searchBox-location");
+  date.classList.add("searchBox-dateTime");
   localTime.classList.add("searchBox-localTime");
 
   icon.textContent = "search";
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    getLocationFromForm();
+    updateMain();
   });
-  location.textContent = "Boston, US";
-  localTime.textContent = "12:00 PM";
+  error.textContent = "Invalid city name. Please try again.";  
+  location.textContent = `${coordsData.name}, ${coordsData.country}`;
+  const currentDateTime = convertUnixTimestamp(currentUnixTimestamp);
+  date.textContent = `${currentDateTime.toLocaleString("en-US", {
+    weekday: "long",
+  })}, ${currentDateTime.getDate()} ${currentDateTime.toLocaleString("en-US", {
+    month: "long",
+  })} ${currentDateTime.getFullYear()}`;
+  localTime.textContent = `${currentDateTime.toLocaleTimeString()}`;
+  setInterval(() => {
+    currentDateTime.setSeconds(currentDateTime.getSeconds() + 1);
+    localTime.textContent = `${currentDateTime.toLocaleTimeString()}`;
+  }, 1000);
 
   searchForm.appendChild(icon);
   searchForm.appendChild(searchInput);
   searchBox.appendChild(searchForm);
+  searchBox.appendChild(error);
   searchBox.appendChild(location);
+  searchBox.appendChild(date);
   searchBox.appendChild(localTime);
 
   return searchBox;

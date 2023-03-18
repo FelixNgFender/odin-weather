@@ -8,10 +8,12 @@
 
 /**
  * Create the weather info component.
+ * @param {Object} currentWeatherData - The current weather data
+ * @param {string} units - Units to display
  * @return {HTMLElement} Weather info component
  * @exports
  */
-export default function weatherInfo() {
+export default function weatherInfo(currentWeatherData, units) {
   const weatherInfo = document.createElement("section");
   const description = document.createElement("div");
   const temperature = document.createElement("div");
@@ -27,36 +29,53 @@ export default function weatherInfo() {
   unitChangeBtn.classList.add("sweepToRight");
   icon.classList.add("weatherInfo-icon");
 
-  description.textContent = "Broken Clouds";
-  temperature.textContent = "21 °C";
-  unitChangeBtn.textContent = "Display °F";
+  const weatherDescription = currentWeatherData.weather[0].description
+    .split(" ")
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+  description.textContent = weatherDescription;
+  if (units === "imperial") {
+    temperature.textContent = `${currentWeatherData.temp.toFixed(1)} °F`;
+    unitChangeBtn.textContent = "Display °C";
+  } else {
+    temperature.textContent = `${currentWeatherData.temp.toFixed(1)} °C`;
+    unitChangeBtn.textContent = "Display °F";
+  }
   unitChangeBtn.type = "button";
   unitChangeBtn.id = "unitChangeBtn";
   unitChangeBtn.addEventListener("click", () => {
     const temperatureDisplays = document.querySelectorAll(
       "#temperatureDisplay"
     );
+    const windSpeedDisplay = document.getElementById("windSpeedDisplay");
     const unitChangeBtn = document.getElementById("unitChangeBtn");
     if (unitChangeBtn.textContent === "Display °F") {
       temperatureDisplays.forEach((temperatureDisplay) => {
         const temperature = temperatureDisplay.textContent.split(" ")[0];
-        temperatureDisplay.textContent = `${Math.round(
-          (temperature * 9) / 5 + 32
-        )} °F`;
-        unitChangeBtn.textContent = "Display °C";
+        temperatureDisplay.textContent = `${
+          ((temperature * 9) / 5 + 32).toFixed(1)
+        } °F`;
       });
+      windSpeedDisplay.textContent = `${
+        (windSpeedDisplay.textContent.split(" ")[0] * 2.237).toFixed(1)
+      } mph`;
+      unitChangeBtn.textContent = "Display °C";
+
     } else {
       temperatureDisplays.forEach((temperatureDisplay) => {
         const temperature = temperatureDisplay.textContent.split(" ")[0];
-        temperatureDisplay.textContent = `${Math.round(
-          ((temperature - 32) * 5) / 9
-        )} °C`;
-        unitChangeBtn.textContent = "Display °F";
+        temperatureDisplay.textContent = `${
+          ((temperature - 32) * (5 / 9)).toFixed(1)
+        } °C`;
       });
+      windSpeedDisplay.textContent = `${
+        (windSpeedDisplay.textContent.split(" ")[0] / 2.237).toFixed(1)
+      } km/h`;
+      unitChangeBtn.textContent = "Display °F";
     }
   });
-  icon.src = "https://openweathermap.org/img/w/04d.png";
-  icon.alt = "Broken Clouds";
+  icon.src = `https://openweathermap.org/img/wn/${currentWeatherData.weather[0].icon}.png`;
+  icon.alt = weatherDescription;
 
   weatherInfo.appendChild(description);
   weatherInfo.appendChild(temperature);
