@@ -43,13 +43,17 @@ export default function weatherDetails(currentWeatherData, units) {
     weatherDetailsList.appendChild(weatherDetailsItem);
   }
 
-  const weatherDetailsIcons = weatherDetailsList.querySelectorAll(".weatherDetails-icon");
-    weatherDetailsIcons[0].textContent = "thermostat";
-    weatherDetailsIcons[1].textContent = "humidity_percentage";
-    weatherDetailsIcons[2].textContent = "cloudy";
-    weatherDetailsIcons[3].textContent = "air";
+  const weatherDetailsIcons = weatherDetailsList.querySelectorAll(
+    ".weatherDetails-icon"
+  );
+  weatherDetailsIcons[0].textContent = "thermostat";
+  weatherDetailsIcons[1].textContent = "humidity_percentage";
+  weatherDetailsIcons[2].textContent = "cloudy";
+  weatherDetailsIcons[3].textContent = "air";
 
-  const weatherDetailsLabels = weatherDetailsList.querySelectorAll(".weatherDetails-label");
+  const weatherDetailsLabels = weatherDetailsList.querySelectorAll(
+    ".weatherDetails-label"
+  );
   weatherDetailsLabels[0].textContent = "Feels Like";
   weatherDetailsLabels[1].textContent = "Humidity";
   weatherDetailsLabels[2].textContent = "Clouds";
@@ -64,13 +68,18 @@ export default function weatherDetails(currentWeatherData, units) {
     temperatureDisplayUnit = " °C";
     windSpeedDisplayUnit = " km/h";
   }
-  const weatherDetailsValues = weatherDetailsList.querySelectorAll(".weatherDetails-value");
-  weatherDetailsValues[0].textContent = `${currentWeatherData.feels_like.toFixed(1)}${temperatureDisplayUnit}`;
+  const weatherDetailsValues = weatherDetailsList.querySelectorAll(
+    ".weatherDetails-value"
+  );
+  weatherDetailsValues[0].textContent = `${currentWeatherData.feels_like.toFixed(
+    1
+  )}${temperatureDisplayUnit}`;
   weatherDetailsValues[1].textContent = `${currentWeatherData.humidity}%`;
   weatherDetailsValues[2].textContent = `${currentWeatherData.clouds}%`;
-  weatherDetailsValues[3].textContent = `${currentWeatherData.wind_speed.toFixed(1)}${windSpeedDisplayUnit}`;
+  weatherDetailsValues[3].textContent = `${currentWeatherData.wind_speed.toFixed(
+    1
+  )}${windSpeedDisplayUnit}`;
   weatherDetailsValues[3].id = "windSpeedDisplay";
-
 
   return weatherDetailsList;
 }

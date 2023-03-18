@@ -1,13 +1,13 @@
 :root {
-  --primary-color: #F9D342; /* yellow */
-  --secondary-color: #FF7C60; /* orange-red */
-  --tertiary-color: #7CFF6A; /* green */
-  --accent-color: #6A7CFF; /* blue */
+  --primary-color: #f9d342; /* yellow */
+  --secondary-color: #ff7c60; /* orange-red */
+  --tertiary-color: #7cff6a; /* green */
+  --accent-color: #6a7cff; /* blue */
   --background-color: 25, 25, 25; /* black */
-  --foreground-color: #FFFFFF; /* white */
-  --text-color: #D1D1D1; /* light gray */
-  --link-color: #FF7C60; /* same as secondary-color */
-  --hover-color: #7CFF6A; /* same as tertiary-color */
+  --foreground-color: #ffffff; /* white */
+  --text-color: #d1d1d1; /* light gray */
+  --link-color: #ff7c60; /* same as secondary-color */
+  --hover-color: #7cff6a; /* same as tertiary-color */
   --transparent: transparent;
   --border-radius: 0px;
   --spacing-xs: 5px;
@@ -67,11 +67,7 @@ body {
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 
 .sweepToRight {
@@ -177,7 +173,7 @@ body {
 
 .searchBox-icon.size-20 {
   font-size: 20px;
-  font-variation-settings: 'OPSZ' 20;
+  font-variation-settings: "OPSZ" 20;
 }
 
 .searchBox-input {
@@ -225,7 +221,7 @@ body {
 
 .weatherDetails-icon.size-20 {
   font-size: 20px;
-  font-variation-settings: 'OPSZ' 20;
+  font-variation-settings: "OPSZ" 20;
 }
 
 .weatherDetails-value {
@@ -351,7 +347,6 @@ body {
   background-color: var(--hover-color);
 }
 
-
 /* FOOTER */
 .footer {
   height: var(--footer-height);
@@ -368,11 +363,10 @@ body {
   font-size: 18px;
   margin-top: 4px;
   transition: transform 0.3s ease-in-out;
-  filter: invert(100%) sepia(0%) saturate(7464%) hue-rotate(278deg) brightness(113%) contrast(108%); 
+  filter: invert(100%) sepia(0%) saturate(7464%) hue-rotate(278deg)
+    brightness(113%) contrast(108%);
 }
 
 .fa-github:hover {
   transform: rotate(360deg) scale(1.2);
 }
-
-/* MEDIA QUERIES */

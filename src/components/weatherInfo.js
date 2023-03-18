@@ -52,25 +52,26 @@ export default function weatherInfo(currentWeatherData, units) {
     if (unitChangeBtn.textContent === "Display °F") {
       temperatureDisplays.forEach((temperatureDisplay) => {
         const temperature = temperatureDisplay.textContent.split(" ")[0];
-        temperatureDisplay.textContent = `${
-          ((temperature * 9) / 5 + 32).toFixed(1)
-        } °F`;
+        temperatureDisplay.textContent = `${(
+          (temperature * 9) / 5 +
+          32
+        ).toFixed(1)} °F`;
       });
-      windSpeedDisplay.textContent = `${
-        (windSpeedDisplay.textContent.split(" ")[0] * 2.237).toFixed(1)
-      } mph`;
+      windSpeedDisplay.textContent = `${(
+        windSpeedDisplay.textContent.split(" ")[0] * 2.237
+      ).toFixed(1)} mph`;
       unitChangeBtn.textContent = "Display °C";
-
     } else {
       temperatureDisplays.forEach((temperatureDisplay) => {
         const temperature = temperatureDisplay.textContent.split(" ")[0];
-        temperatureDisplay.textContent = `${
-          ((temperature - 32) * (5 / 9)).toFixed(1)
-        } °C`;
+        temperatureDisplay.textContent = `${(
+          (temperature - 32) *
+          (5 / 9)
+        ).toFixed(1)} °C`;
       });
-      windSpeedDisplay.textContent = `${
-        (windSpeedDisplay.textContent.split(" ")[0] / 2.237).toFixed(1)
-      } km/h`;
+      windSpeedDisplay.textContent = `${(
+        windSpeedDisplay.textContent.split(" ")[0] / 2.237
+      ).toFixed(1)} km/h`;
       unitChangeBtn.textContent = "Display °F";
     }
   });

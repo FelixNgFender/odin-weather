@@ -147,7 +147,12 @@ export default function pageLoad(coordsData, weatherData, units) {
     weatherDetailsComponent(weatherData.current, units)
   );
   wideScreenWrapper.appendChild(
-    forecastComponent(weatherData.daily, weatherData.hourly, units, weatherData.timezone)
+    forecastComponent(
+      weatherData.daily,
+      weatherData.hourly,
+      units,
+      weatherData.timezone
+    )
   );
   content.appendChild(footer());
   loadFavicons();
@@ -175,6 +180,11 @@ export function reRenderMain(coordsData, weatherData, units) {
     weatherDetailsComponent(weatherData.current, units)
   );
   wideScreenWrapper.appendChild(
-    forecastComponent(weatherData.daily, weatherData.hourly, units, weatherData.timezone)
+    forecastComponent(
+      weatherData.daily,
+      weatherData.hourly,
+      units,
+      weatherData.timezone
+    )
   );
 }
