@@ -141,13 +141,13 @@ export default function pageLoad(coordsData, weatherData, units) {
     weatherInfoComponent(weatherData.current, units)
   );
   wideScreenWrapper.appendChild(
-    searchBoxComponent(coordsData, weatherData.current.dt)
+    searchBoxComponent(coordsData, weatherData.current.dt, weatherData.timezone)
   );
   wideScreenWrapper.appendChild(
     weatherDetailsComponent(weatherData.current, units)
   );
   wideScreenWrapper.appendChild(
-    forecastComponent(weatherData.daily, weatherData.hourly, units)
+    forecastComponent(weatherData.daily, weatherData.hourly, units, weatherData.timezone)
   );
   content.appendChild(footer());
   loadFavicons();
@@ -169,12 +169,12 @@ export function reRenderMain(coordsData, weatherData, units) {
     weatherInfoComponent(weatherData.current, units)
   );
   wideScreenWrapper.appendChild(
-    searchBoxComponent(coordsData, weatherData.current.dt)
+    searchBoxComponent(coordsData, weatherData.current.dt, weatherData.timezone)
   );
   wideScreenWrapper.appendChild(
     weatherDetailsComponent(weatherData.current, units)
   );
   wideScreenWrapper.appendChild(
-    forecastComponent(weatherData.daily, weatherData.hourly, units)
+    forecastComponent(weatherData.daily, weatherData.hourly, units, weatherData.timezone)
   );
 }

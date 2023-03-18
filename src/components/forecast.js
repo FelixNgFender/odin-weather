@@ -13,13 +13,15 @@ import { convertUnixTimestamp } from "..";
  * @param {Object} dailyForecastData - Daily forecast data
  * @param {Object} hourlyForecastData - Hourly forecast data
  * @param {Object} units - Units to display
+ * @param {Object} timezone - Timezone of the location
  * @return {HTMLElement} Forecast component
  * @exports
  */
 export default function forecastComponent(
   dailyForecastData,
   hourlyForecastData,
-  units
+  units,
+  timezone
 ) {
   const forecast = document.createElement("section");
   const forecastBtnWrapper = document.createElement("div");
@@ -27,9 +29,17 @@ export default function forecastComponent(
   const forecastDailyLabel = document.createElement("label");
   const forecastHourlyBtn = document.createElement("input");
   const forecastHourlyLabel = document.createElement("label");
-  const dailyForecastComponent = dailyForecastList(dailyForecastData, units);
-  const hourlyForecastComponent = hourlyForecastList(hourlyForecastData, units);
-  const navigation = navigationDots(24, 0);
+  const dailyForecastComponent = dailyForecastList(
+    dailyForecastData,
+    units,
+    timezone
+  );
+  const hourlyForecastComponent = hourlyForecastList(
+    hourlyForecastData,
+    units,
+    timezone
+  );
+  const navigation = navigationDots(7, 0);
 
   forecast.id = "forecast";
   forecast.classList.add("forecast", "frostedGlass");
@@ -39,7 +49,7 @@ export default function forecastComponent(
   forecastDailyBtn.type = "radio";
   forecastDailyBtn.name = "forecast";
   forecastDailyBtn.value = "daily";
-  forecastHourlyBtn.checked = true;
+  forecastDailyBtn.checked = true;
   forecastDailyLabel.classList.add("forecast-label", "sweepToRight");
   forecastDailyLabel.htmlFor = "forecast-dailyBtn";
   forecastHourlyBtn.id = "forecast-hourlyBtn";
@@ -88,11 +98,12 @@ export default function forecastComponent(
  * Create the daily forecast list.
  * @param {Object} dailyForecastData - Daily forecast data
  * @param {Object} units - Units to display
+ * @param {Object} timezone - Timezone of the location
  * @return {HTMLElement} Daily forecast list
  */
-function dailyForecastList(dailyForecastData, units) {
+function dailyForecastList(dailyForecastData, units, timezone) {
   const dailyForecastList = document.createElement("ul");
-  dailyForecastList.classList.add("forecast-daily");
+  dailyForecastList.classList.add("forecast-daily", "active");
   dailyForecastList.id = "forecast-daily";
 
   let temperatureDisplayUnit;
@@ -119,7 +130,7 @@ function dailyForecastList(dailyForecastData, units) {
 
     dailyForecastItemDate.textContent = convertUnixTimestamp(
       dailyForecastData[i].dt
-    ).toLocaleString("en-US", { weekday: "short" });
+    ).toLocaleString("en-US", { weekday: "short", timeZone: timezone });
     dailyForecastItemTempHi.textContent = `${dailyForecastData[
       i
     ].temp.max.toFixed(1)}${temperatureDisplayUnit}`;
@@ -150,11 +161,12 @@ function dailyForecastList(dailyForecastData, units) {
  * Create the hourly forecast list.
  * @param {Object} hourlyForecastData - Hourly forecast data
  * @param {String} units - Units to display
+ * @param {String} timezone - Timezone of the location
  * @return {HTMLElement} Hourly forecast list
  */
-function hourlyForecastList(hourlyForecastData, units) {
+function hourlyForecastList(hourlyForecastData, units, timezone) {
   const hourlyForecastList = document.createElement("ul");
-  hourlyForecastList.classList.add("forecast-hourly", "active");
+  hourlyForecastList.classList.add("forecast-hourly");
   hourlyForecastList.id = "forecast-hourly";
 
   let temperatureDisplayUnit;
@@ -179,7 +191,11 @@ function hourlyForecastList(hourlyForecastData, units) {
     hourlyForecastItem.dataset.index = i;
     hourlyForecastItemTime.textContent = convertUnixTimestamp(
       hourlyForecastData[i].dt
-    ).toLocaleString("en-US", { hour: "numeric", hour12: true });
+    ).toLocaleString("en-US", {
+      hour: "numeric",
+      hour12: true,
+      timeZone: timezone,
+    });
     hourlyForecastItemTemp.textContent = `${hourlyForecastData[i].temp.toFixed(
       1
     )}${temperatureDisplayUnit}`;

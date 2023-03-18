@@ -12,10 +12,15 @@ import { convertUnixTimestamp, updateMain } from "..";
  * Create the search box component.
  * @param {Object} coordsData - Coordinates data
  * @param {Number} currentUnixTimestamp - Current unix timestamp
+ * @param {string} timezone - Timezone of the location
  * @return {HTMLElement} Search box component
  * @exports
  */
-export default function searchBoxComponent(coordsData, currentUnixTimestamp) {
+export default function searchBoxComponent(
+  coordsData,
+  currentUnixTimestamp,
+  timezone
+) {
   const searchBox = document.createElement("section");
   const searchForm = document.createElement("form");
   const icon = document.createElement("label");
@@ -50,18 +55,24 @@ export default function searchBoxComponent(coordsData, currentUnixTimestamp) {
     e.preventDefault();
     updateMain();
   });
-  error.textContent = "Invalid city name. Please try again.";  
+  error.textContent = "Invalid city name. Please try again.";
   location.textContent = `${coordsData.name}, ${coordsData.country}`;
-  const currentDateTime = convertUnixTimestamp(currentUnixTimestamp);
+  const currentDateTime = convertUnixTimestamp(currentUnixTimestamp, timezone);
   date.textContent = `${currentDateTime.toLocaleString("en-US", {
+    timeZone: timezone,
     weekday: "long",
   })}, ${currentDateTime.getDate()} ${currentDateTime.toLocaleString("en-US", {
+    timeZone: timezone,
     month: "long",
   })} ${currentDateTime.getFullYear()}`;
-  localTime.textContent = `${currentDateTime.toLocaleTimeString()}`;
+  localTime.textContent = `${currentDateTime.toLocaleTimeString("en-US", {
+    timeZone: timezone,
+  })}`;
   setInterval(() => {
     currentDateTime.setSeconds(currentDateTime.getSeconds() + 1);
-    localTime.textContent = `${currentDateTime.toLocaleTimeString()}`;
+    localTime.textContent = `${currentDateTime.toLocaleTimeString("en-US", {
+      timeZone: timezone,
+    })}`;
   }, 1000);
 
   searchForm.appendChild(icon);

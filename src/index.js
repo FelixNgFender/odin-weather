@@ -25,7 +25,7 @@ const defaultUnits = "metric";
  * @return {Date} Date object
  */
 export function convertUnixTimestamp(unixTimestamp) {
-  const dateObj = new Date(unixTimestamp * 1000);
+  const dateObj = new Date((unixTimestamp) * 1000);
   return dateObj;
 }
 
