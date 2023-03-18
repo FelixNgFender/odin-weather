@@ -28,6 +28,9 @@ export default function weatherDetails() {
       "weatherDetails-icon",
       "size-20"
     );
+    if (i === 0) {
+      weatherDetailsItemValue.id = "temperatureDisplay";
+    }
     weatherDetailsItemLabel.classList.add("weatherDetails-label");
     weatherDetailsItemValue.classList.add("weatherDetails-value");
 

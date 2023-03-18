@@ -8,6 +8,7 @@
   --text-color: #D1D1D1; /* light gray */
   --link-color: #FF7C60; /* same as secondary-color */
   --hover-color: #7CFF6A; /* same as tertiary-color */
+  --transparent: transparent;
   --border-radius: 0px;
   --spacing-xs: 5px;
   --spacing-sm: 10px;
@@ -131,7 +132,7 @@ body {
 .weatherInfo-unitChangeBtn {
   font-family: inherit;
   font-size: 1.5rem;
-  background-color: rgba(var(--background-color), 1);
+  background-color: var(--transparent);
   color: var(--text-color);
   width: var(--btn-width);
   border: var(--border);
@@ -164,7 +165,7 @@ body {
   justify-content: center;
   border-radius: var(--border-radius);
   border: var(--border);
-  background-color: transparent;
+  background-color: var(--transparent);
   gap: var(--spacing-sm);
   padding: var(--spacing-md);
 }
@@ -184,7 +185,7 @@ body {
   outline: none;
   font-size: 1.5rem;
   font-family: inherit;
-  background-color: transparent;
+  background-color: var(--transparent);
   color: var(--text-color);
 }
 
@@ -241,6 +242,7 @@ body {
   border: var(--border);
   margin-right: var(--spacing-sm);
   cursor: pointer;
+  background-color: var(--transparent);
 }
 
 .forecast-label:hover {
@@ -283,15 +285,20 @@ body {
   gap: var(--spacing-sm);
 }
 
-.forecast-navigationDot {
+.forecast-navigationDotBtn {
+  display: none;
+}
+
+.forecast-navigationDotLabel {
   border-radius: 50%;
   width: var(--nav-dot-size);
   height: var(--nav-dot-size);
   border: var(--border);
   cursor: pointer;
+  background-color: var(--transparent);
 }
 
-.forecast-navigationDot.active {
+.forecast-navigationDotBtn:checked + .forecast-navigationDotLabel {
   background-color: var(--hover-color);
 }
 

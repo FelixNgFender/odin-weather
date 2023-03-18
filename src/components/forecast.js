@@ -27,16 +27,14 @@ export default function forecastComponent() {
   forecastDailyBtn.name = "forecast";
   forecastDailyBtn.value = "daily";
   forecastDailyBtn.checked = true;
-  forecastDailyLabel.classList.add("forecast-label");
-  forecastDailyLabel.classList.add("sweepToRight");
+  forecastDailyLabel.classList.add("forecast-label", "sweepToRight");
   forecastDailyLabel.htmlFor = "forecast-dailyBtn";
   forecastHourlyBtn.id = "forecast-hourlyBtn";
   forecastHourlyBtn.classList.add("forecast-btn");
   forecastHourlyBtn.type = "radio";
   forecastHourlyBtn.name = "forecast";
   forecastHourlyBtn.value = "hourly";
-  forecastHourlyLabel.classList.add("forecast-label");
-  forecastHourlyLabel.classList.add("sweepToRight");
+  forecastHourlyLabel.classList.add("forecast-label", "sweepToRight");
   forecastHourlyLabel.htmlFor = "forecast-hourlyBtn";
 
   forecastDailyLabel.textContent = "Daily";
@@ -71,7 +69,9 @@ function dailyForecastList() {
     dailyForecastItem.classList.add("forecast-daily-item");
     dailyForecastItemDate.classList.add("forecast-daily-item-date");
     dailyForecastItemTempHi.classList.add("forecast-daily-item-tempHi");
+    dailyForecastItemTempHi.id = "temperatureDisplay"
     dailyForecastItemTempLo.classList.add("forecast-daily-item-tempLo");
+    dailyForecastItemTempLo.id = "temperatureDisplay"
     dailyForecastItemIcon.classList.add("forecast-daily-item-icon");
 
     dailyForecastItemDate.textContent = "Mon";
@@ -97,18 +97,25 @@ function dailyForecastList() {
  * @return {HTMLElement} Navigation dots
  */
 function navigationDots(numTabs) {
-  const navigationDots = document.createElement("ul");
+  const navigationDots = document.createElement("div");
   const numDots = (numTabs <= 7 ? 1 : 3);
 
   navigationDots.classList.add("forecast-navigationDots");
   for (let i = 0; i < numDots; i++) {
-    const navigationDot = document.createElement("li");
-    navigationDot.classList.add("forecast-navigationDot");
-    navigationDot.classList.add("sweepToRight");
+    const navigationDotBtn = document.createElement("input");
+    const navigationDotLabel = document.createElement("label");
+    navigationDotBtn.classList.add("forecast-navigationDotBtn");
+    navigationDotBtn.id = "forecast-navigationDot-" + i;
+    navigationDotBtn.type = "radio";
+    navigationDotBtn.name = "navigation";
+    navigationDotBtn.value = i;
+    navigationDotLabel.classList.add("forecast-navigationDotLabel", "sweepToRight");
+    navigationDotLabel.htmlFor = "forecast-navigationDot-" + i;
     if (i === 0) {
-      navigationDot.classList.add("active");
+      navigationDotBtn.checked = true;
     }
-    navigationDots.appendChild(navigationDot);
+    navigationDots.appendChild(navigationDotBtn);
+    navigationDots.appendChild(navigationDotLabel);
   }
 
   return navigationDots;

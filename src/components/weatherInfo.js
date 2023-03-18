@@ -22,6 +22,7 @@ export default function weatherInfo() {
   weatherInfo.classList.add("frostedGlass");
   description.classList.add("weatherInfo-description");
   temperature.classList.add("weatherInfo-temperature");
+  temperature.id = "temperatureDisplay";
   unitChangeBtn.classList.add("weatherInfo-unitChangeBtn");
   unitChangeBtn.classList.add("sweepToRight");
   icon.classList.add("weatherInfo-icon");
@@ -29,7 +30,31 @@ export default function weatherInfo() {
   description.textContent = "Broken Clouds";
   temperature.textContent = "21 °C";
   unitChangeBtn.textContent = "Display °F";
-  unitChangeBtn.type = "button";  
+  unitChangeBtn.type = "button";
+  unitChangeBtn.id = "unitChangeBtn";
+  unitChangeBtn.addEventListener("click", () => {
+    const temperatureDisplays = document.querySelectorAll(
+      "#temperatureDisplay"
+    );
+    const unitChangeBtn = document.getElementById("unitChangeBtn");
+    if (unitChangeBtn.textContent === "Display °F") {
+      temperatureDisplays.forEach((temperatureDisplay) => {
+        const temperature = temperatureDisplay.textContent.split(" ")[0];
+        temperatureDisplay.textContent = `${Math.round(
+          (temperature * 9) / 5 + 32
+        )} °F`;
+        unitChangeBtn.textContent = "Display °C";
+      });
+    } else {
+      temperatureDisplays.forEach((temperatureDisplay) => {
+        const temperature = temperatureDisplay.textContent.split(" ")[0];
+        temperatureDisplay.textContent = `${Math.round(
+          ((temperature - 32) * 5) / 9
+        )} °C`;
+        unitChangeBtn.textContent = "Display °F";
+      });
+    }
+  });
   icon.src = "https://openweathermap.org/img/w/04d.png";
   icon.alt = "Broken Clouds";
 
