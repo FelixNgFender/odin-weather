@@ -19,14 +19,17 @@ export default function weatherInfo() {
   const icon = document.createElement("img");
 
   weatherInfo.classList.add("weatherInfo");
+  weatherInfo.classList.add("frostedGlass");
   description.classList.add("weatherInfo-description");
   temperature.classList.add("weatherInfo-temperature");
   unitChangeBtn.classList.add("weatherInfo-unitChangeBtn");
+  unitChangeBtn.classList.add("sweepToRight");
   icon.classList.add("weatherInfo-icon");
 
   description.textContent = "Broken Clouds";
   temperature.textContent = "21 °C";
   unitChangeBtn.textContent = "Display °F";
+  unitChangeBtn.type = "button";  
   icon.src = "https://openweathermap.org/img/w/04d.png";
   icon.alt = "Broken Clouds";
 

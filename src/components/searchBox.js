@@ -22,6 +22,7 @@ export default function searchBoxComponent() {
   const localTime = document.createElement("div");
 
   searchBox.classList.add("searchBox");
+  searchBox.classList.add("frostedGlass");
   searchForm.id = "searchBox-form";
   searchForm.classList.add("searchBox-form");
   icon.classList.add("material-symbols-outlined", "searchBox-icon", "size-20");

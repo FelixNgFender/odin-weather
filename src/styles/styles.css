@@ -1,4 +1,13 @@
 :root {
+  --primary-color: #F9D342; /* yellow */
+  --secondary-color: #FF7C60; /* orange-red */
+  --tertiary-color: #7CFF6A; /* green */
+  --accent-color: #6A7CFF; /* blue */
+  --background-color: 25, 25, 25; /* black */
+  --foreground-color: #FFFFFF; /* white */
+  --text-color: #D1D1D1; /* light gray */
+  --link-color: #FF7C60; /* same as secondary-color */
+  --hover-color: #7CFF6A; /* same as tertiary-color */
   --border-radius: 0px;
   --spacing-xs: 5px;
   --spacing-sm: 10px;
@@ -11,9 +20,7 @@
   --search-bar-height: 44px;
   --forecast-height: 300px;
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  --btn-border: 2px solid grey;
-  --placeholder-text: grey;
-  --text-color: black;
+  --border: 2px solid var(--hover-color);
 }
 
 /* GLOBAL */
@@ -39,12 +46,11 @@ body {
   grid-template-rows: 1fr auto;
   font-family: "Cute Font", sans-serif;
   font-size: 2.5rem;
-  background-color: #f5f5f5;
-  /* background-image: url("../assets/images/placeholder.jpg"); */
+  background-image: url("../assets/images/background.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--text-color);
 }
 
 .wideScreenWrapper {
@@ -66,6 +72,51 @@ body {
   'opsz' 48
 }
 
+.sweepToRight {
+  position: relative;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition: color 1000ms;
+  transition: color 1000ms;
+  color: var(--text-color);
+}
+
+.sweepToRight:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--hover-color);
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition: 300ms ease-out;
+  transition: 300ms ease-out;
+}
+
+.sweepToRight:hover:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.frostedGlass {
+  background: rgba(var(--background-color), 0.6);
+  backdrop-filter: saturate(180%) blur(10px);
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .frostedGlass {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
 /* WEATHER INFO */
 .weatherInfo {
   padding: var(--spacing-lg);
@@ -74,17 +125,23 @@ body {
 .weatherInfo-temperature {
   font-size: 3rem;
   font-weight: 700;
+  color: var(--tertiary-color);
 }
 
 .weatherInfo-unitChangeBtn {
   font-family: inherit;
   font-size: 1.5rem;
-  background-color: transparent;
+  background-color: rgba(var(--background-color), 1);
+  color: var(--text-color);
   width: var(--btn-width);
-  border: var(--btn-border);
+  border: var(--border);
   outline: none;
   cursor: pointer;
   padding: 0;
+}
+
+.weatherInfo-unitChangeBtn:hover {
+  color: rgba(var(--background-color), 1);
 }
 
 .weatherInfo-icon {
@@ -100,16 +157,20 @@ body {
   gap: var(--spacing-lg);
 }
 
-/* Make it look like google search bar*/
 .searchBox-form {
   height: var(--search-bar-height);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--border-radius);
-  border: 1px solid grey;
+  border: var(--border);
+  background-color: transparent;
   gap: var(--spacing-sm);
   padding: var(--spacing-md);
+}
+
+.searchBox-icon:hover {
+  color: var(--hover-color);
 }
 
 .searchBox-icon.size-20 {
@@ -123,8 +184,8 @@ body {
   outline: none;
   font-size: 1.5rem;
   font-family: inherit;
-  color: grey;
-  background-color: #f5f5f5;
+  background-color: transparent;
+  color: var(--text-color);
 }
 
 /* WEATHER DETAILS */
@@ -147,10 +208,10 @@ body {
 
 .weatherDetails-icon {
   grid-row: 1 / -1;
+  margin-top: 3px;
 }
 
 .weatherDetails-icon.size-20 {
-  margin-top: 3px;
   font-size: 20px;
   font-variation-settings: 'OPSZ' 20;
 }
@@ -158,6 +219,7 @@ body {
 .weatherDetails-value {
   font-size: 2.5rem;
   font-weight: 700;
+  color: var(--tertiary-color);
 }
 
 /* FORECAST */
@@ -176,16 +238,18 @@ body {
   width: var(--btn-width);
   font-size: 1.5rem;
   text-align: center;
-  border: var(--btn-border);
+  border: var(--border);
   margin-right: var(--spacing-sm);
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
 }
 
-.forecast-label:hover,
+.forecast-label:hover {
+  color: rgba(var(--background-color), 1);
+}
+
 .forecast-btn:checked + .forecast-label {
-  background-color: grey;
-  color: #f5f5f5;
+  color: rgba(var(--background-color), 1);
+  background-color: var(--hover-color);
 }
 
 .forecast-slider {
@@ -195,15 +259,10 @@ body {
   align-items: center;
 }
 
-.forecast-slider svg {
-  fill: black;
-}
-
 /* FOOTER */
 .footer {
   height: var(--footer-height);
   font-size: 1.3rem;
-  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,9 +274,8 @@ body {
 .fa-github {
   font-size: 18px;
   margin-top: 4px;
-  color: black;
   transition: transform 0.3s ease-in-out;
-  /* filter: invert(100%) sepia(0%) saturate(7464%) hue-rotate(278deg) brightness(113%) contrast(108%); */
+  filter: invert(100%) sepia(0%) saturate(7464%) hue-rotate(278deg) brightness(113%) contrast(108%); 
 }
 
 .fa-github:hover {

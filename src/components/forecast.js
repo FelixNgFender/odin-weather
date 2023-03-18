@@ -21,6 +21,7 @@ export default function forecastComponent() {
 
   forecast.id = "forecast";
   forecast.classList.add("forecast");
+  forecast.classList.add("frostedGlass");
   forecastDailyBtn.id = "forecast-dailyBtn";
   forecastDailyBtn.classList.add("forecast-btn");
   forecastDailyBtn.type = "radio";
@@ -28,6 +29,7 @@ export default function forecastComponent() {
   forecastDailyBtn.value = "daily";
   forecastDailyBtn.checked = true;
   forecastDailyLabel.classList.add("forecast-label");
+  forecastDailyLabel.classList.add("sweepToRight");
   forecastDailyLabel.htmlFor = "forecast-dailyBtn";
   forecastHourlyBtn.id = "forecast-hourlyBtn";
   forecastHourlyBtn.classList.add("forecast-btn");
@@ -35,6 +37,7 @@ export default function forecastComponent() {
   forecastHourlyBtn.name = "forecast";
   forecastHourlyBtn.value = "hourly";
   forecastHourlyLabel.classList.add("forecast-label");
+  forecastHourlyLabel.classList.add("sweepToRight");
   forecastHourlyLabel.htmlFor = "forecast-hourlyBtn";
 
   forecastDailyLabel.textContent = "Daily";

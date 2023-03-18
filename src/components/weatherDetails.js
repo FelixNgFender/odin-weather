@@ -15,6 +15,7 @@ export default function weatherDetails() {
   const weatherDetailsList = document.createElement("ul");
 
   weatherDetailsList.classList.add("weatherDetails");
+  weatherDetailsList.classList.add("frostedGlass");
   for (let i = 0; i < 4; i++) {
     const weatherDetailsItem = document.createElement("li");
     const weatherDetailsItemIcon = document.createElement("span");
