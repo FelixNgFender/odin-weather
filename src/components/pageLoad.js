@@ -16,6 +16,8 @@ import favicon32Href from "../assets/favicon/favicon-32x32.png";
 import favicon16Href from "../assets/favicon/favicon-16x16.png";
 import manifestHref from "../assets/favicon/site.webmanifest";
 import maskIconHref from "../assets/favicon/safari-pinned-tab.svg";
+// import shortcutIconHref from "../assets/favicon/favicon.ico";
+import msConfigHref from "../assets/favicon/browserconfig.xml";
 
 /**
  * Add favicons to the page.
@@ -26,8 +28,10 @@ function loadFavicons() {
   const favicon32 = document.createElement("link");
   const favicon16 = document.createElement("link");
   const manifest = document.createElement("link");
+  // const shortcutIcon = document.createElement("link");
   const maskIcon = document.createElement("link");
   const msTileColor = document.createElement("meta");
+  const msConfig = document.createElement("meta");
   const themeColor = document.createElement("meta");
   appleTouchIcon.rel = "apple-touch-icon";
   appleTouchIcon.sizes = "180x180";
@@ -42,11 +46,15 @@ function loadFavicons() {
   favicon16.href = favicon16Href;
   manifest.rel = "manifest";
   manifest.href = manifestHref;
+  // shortcutIcon.rel = "shortcut icon";
+  // shortcutIcon.href = shortcutIconHref;
   maskIcon.rel = "mask-icon";
   maskIcon.href = maskIconHref;
   maskIcon.color = "#5bbad5";
   msTileColor.name = "msapplication-TileColor";
-  msTileColor.content = "#da532c";
+  msTileColor.content = "#9f00a7";
+  msConfig.name = "msapplication-config";
+  msConfig.content = msConfigHref;
   themeColor.name = "theme-color";
   themeColor.content = "#ffffff";
   document.head.appendChild(appleTouchIcon);
@@ -54,7 +62,9 @@ function loadFavicons() {
   document.head.appendChild(favicon16);
   document.head.appendChild(manifest);
   document.head.appendChild(maskIcon);
+  // document.head.appendChild(shortcutIcon);
   document.head.appendChild(msTileColor);
+  document.head.appendChild(msConfig);
   document.head.appendChild(themeColor);
 }
 

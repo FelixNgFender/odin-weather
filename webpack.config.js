@@ -1,15 +1,15 @@
 const path = require("path");
 const ESLintPlugin = require("eslint-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
   entry: {
-    index: './src/index.js',
+    index: "./src/index.js",
   },
   devtool: "inline-source-map",
   devServer: {
-    static: './dist',
+    static: "./dist",
   },
   output: {
     filename: "[name].[contenthash].js",
@@ -19,7 +19,8 @@ module.exports = {
   plugins: [
     new ESLintPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Kawaii Weather',
+      title: "NeonSky",
+      favicon: "./src/assets/favicon/favicon.ico",
     }),
   ],
   module: {
@@ -29,13 +30,11 @@ module.exports = {
         exclude: /node_modules/,
         include: path.resolve(__dirname, "src"),
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: [
-              ['@babel/preset-env', { targets: "defaults" }]
-            ]
-          }
-        }
+            presets: [["@babel/preset-env", { targets: "defaults" }]],
+          },
+        },
       },
       {
         test: /\.css$/i,
@@ -53,26 +52,32 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         exclude: /node_modules/,
         include: path.resolve(__dirname, "src"),
-        type: 'asset/resource',
+        type: "asset/resource",
       },
       {
         test: /\.webmanifest$/i,
         exclude: /node_modules/,
         include: path.resolve(__dirname, "src"),
-        use: 'webpack-webmanifest-loader',
-        type: 'asset/resource',
+        use: "webpack-webmanifest-loader",
+        type: "asset/resource",
+      },
+      {
+        test: /\.xml$/i,
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, "src"),
+        use: ["xml-loader"],
       },
     ],
   },
   optimization: {
-    moduleIds: 'deterministic',
-    runtimeChunk: 'single',
+    moduleIds: "deterministic",
+    runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
+          name: "vendors",
+          chunks: "all",
         },
       },
     },
