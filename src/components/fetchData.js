@@ -39,7 +39,7 @@ function sanitizeInput(input) {
  */
 export function buildCoordsUrl(cityName) {
   const sanitizedCityName = sanitizeInput(cityName);
-  return `http://api.openweathermap.org/geo/1.0/direct?q=${sanitizedCityName}&limit=1&appid=20f7632ffc2c022654e4093c6947b4f4`;
+  return `https://api.openweathermap.org/geo/1.0/direct?q=${sanitizedCityName}&limit=1&appid=20f7632ffc2c022654e4093c6947b4f4`;
 }
 
 /**
