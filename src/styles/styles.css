@@ -23,6 +23,8 @@
   --nav-dot-size: 10px;
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --border: 2px solid var(--hover-color);
+  --sm-breakpoint: 768px;
+  --forecast-height-sm: 550px;
 }
 
 /* GLOBAL */
@@ -52,6 +54,8 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  
   color: var(--text-color);
 }
 
@@ -133,9 +137,9 @@ body {
   color: var(--text-color);
   width: var(--btn-width);
   border: var(--border);
+  padding: var(--spacing-xs) var(--spacing-sm);
   outline: none;
   cursor: pointer;
-  padding: 0;
 }
 
 .weatherInfo-unitChangeBtn:hover {
@@ -253,6 +257,7 @@ body {
   width: var(--btn-width);
   font-size: 1.5rem;
   text-align: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
   border: var(--border);
   margin-right: var(--spacing-sm);
   cursor: pointer;
@@ -321,7 +326,6 @@ body {
 }
 
 .forecast-navigationDots {
-  /* margin-top as much as possible without displacing other elements */
   width: 100%;
   height: var(--nav-dot-size);
   display: flex;
@@ -369,4 +373,59 @@ body {
 
 .fa-github:hover {
   transform: rotate(360deg) scale(1.2);
+}
+
+/* MEDIA QUERIES */
+/* for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 1.5rem;
+  }
+  .wideScreenWrapper {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .weatherInfo-unitChangeBtn {
+    font-size: 1rem;
+  }
+  .weatherInfo-temperature {
+    font-size: 1.5rem;
+  }
+  .searchBox-input {
+    font-size: 1.5rem;
+  }
+  .weatherDetails {
+    font-size: 1rem;
+  }
+  .weatherDetails-value {
+    font-size: 1.5rem;
+  }
+  .forecast {
+    height: var(--forecast-height-sm);
+  }
+  .forecast-label {
+    font-size: 1rem;
+  }
+  .forecast-daily {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: reapeat(4, 1fr);
+  }
+  .forecast-hourly {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: reapeat(4, 1fr);
+  }
+  .forecast-daily-item-date {
+    font-size: 1.5rem;
+  }
+  .forecast-daily-item-tempHi {
+    font-size: 1rem;
+  }
+  .forecast-daily-item-tempLo {
+    font-size: 0.9rem;
+  }
+  .forecast-hourly-item-time {
+    font-size: 1.5rem;
+  }
+  .forecast-hourly-item-temp {
+    font-size: 1rem;
+  }
 }
