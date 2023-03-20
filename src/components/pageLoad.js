@@ -114,6 +114,26 @@ function loadKit() {
 }
 
 /**
+ * Load Google Fonts.
+ * @return {void}
+ */
+function loadGoogleFonts() {
+  const googleFonts = document.createElement("link");
+  googleFonts.rel = "preconnect";
+  googleFonts.href = "https://fonts.googleapis.com";
+  const googleFonts2 = document.createElement("link");
+  googleFonts2.rel = "preconnect";
+  googleFonts2.href = "https://fonts.gstatic.com";
+  googleFonts2.crossOrigin = "anonymous";
+  const googleFonts3 = document.createElement("link");
+  googleFonts3.href = "https://fonts.googleapis.com/css2?family=Cute+Font&display=swap";
+  googleFonts3.rel = "stylesheet";
+  document.head.appendChild(googleFonts);
+  document.head.appendChild(googleFonts2);
+  document.head.appendChild(googleFonts3);
+}
+
+/**
  * Load Google Fonts icons.
  * @return {void}
  */
@@ -157,6 +177,7 @@ export default function pageLoad(coordsData, weatherData, units) {
   content.appendChild(footer());
   loadFavicons();
   loadGoogleIcons();
+  loadGoogleFonts();
 }
 
 /**

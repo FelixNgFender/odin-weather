@@ -28,11 +28,6 @@
 }
 
 /* GLOBAL */
-@font-face {
-  font-family: "Cute Font";
-  src: url("../assets/fonts/CuteFont-Regular.ttf");
-}
-
 html {
   box-sizing: border-box;
   height: 100%;
@@ -48,7 +43,7 @@ body {
   min-height: 100%;
   display: grid;
   grid-template-rows: 1fr auto;
-  font-family: "Cute Font", sans-serif;
+  font-family: "Cute Font", cursive;
   font-size: 2.5rem;
   background-image: url("../assets/images/background.jpg");
   background-size: cover;
