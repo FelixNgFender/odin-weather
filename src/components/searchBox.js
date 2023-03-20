@@ -57,7 +57,7 @@ export default function searchBoxComponent(
   });
   error.textContent = "Invalid city name. Please try again.";
   location.textContent = `${coordsData.name}, ${coordsData.country}`;
-  const currentDateTime = convertUnixTimestamp(currentUnixTimestamp, timezone);
+  const currentDateTime = convertUnixTimestamp(currentUnixTimestamp);
   date.textContent = `${currentDateTime.toLocaleString("en-US", {
     timeZone: timezone,
     weekday: "long",
